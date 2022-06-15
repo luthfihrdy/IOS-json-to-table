@@ -44,7 +44,7 @@ class DataTableViewController: UITableViewController {
         //cell?.imageViewBooks.image = data[indexPath.row].thumbnailUrl
         if let myVar = data[indexPath.row].thumbnailUrl {
             AF.request(myVar).response { (response) in
-                cell?.imageViewBooks.image = UIImage(data: response.data!, scale: 1)
+                cell?.imageViewBooks.image = UIImage(data: response.data!)
                     }
         }else {
             cell?.imageViewBooks.image = UIImage(named: "nofile")
