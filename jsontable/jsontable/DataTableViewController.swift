@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class DataTableViewController: UITableViewController {
 
@@ -37,9 +38,17 @@ class DataTableViewController: UITableViewController {
 
 //        cell.textLabel?.text = data[indexPath.row].author
 //        cell.textLabel?.text = data[indexPath.row].title
-        cell?.authorLabel.text = data[indexPath.row].author
-        cell?.titleLabel.text = data[indexPath.row].title
-        cell?.yearLabel.text = String(data[indexPath.row].year)
+        cell?.authorLabel.text = data[indexPath.row].title
+        cell?.titleLabel.text = "by \(data[indexPath.row].authors[0]) "
+        cell?.yearLabel.text = "1920"
+        //cell?.imageViewBooks.image = data[indexPath.row].thumbnailUrl
+        if let myVar = data[indexPath.row].thumbnailUrl {
+            AF.request(myVar).response { (response) in
+                cell?.imageViewBooks.image = UIImage(data: response.data!, scale: 1)
+                    }
+        }else {
+            cell?.imageViewBooks.image = UIImage(named: "nofile")
+        }
         
         // Configure the cell...
 
@@ -48,6 +57,11 @@ class DataTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120.0;//Choose your custom row height
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section:Int) -> String?
+    {
+      return "Books"
     }
 
     /*

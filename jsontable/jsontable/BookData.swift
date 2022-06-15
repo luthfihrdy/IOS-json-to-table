@@ -8,7 +8,8 @@
 import Foundation
 
 struct BookData : Codable {
-    var author: String
+    var authors: [String]
     var title: String
-    var year: Int
+    var thumbnailUrl: String?
+//    var year: Int
 }

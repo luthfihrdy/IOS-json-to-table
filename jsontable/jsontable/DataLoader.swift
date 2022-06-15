@@ -13,7 +13,7 @@ public class DataLoader {
         load()
     }
     func load() {
-        if let fileLocation = Bundle.main.url(forResource: "books", withExtension: "json") {
+        if let fileLocation = Bundle.main.url(forResource: "booksNew", withExtension: "json") {
             
             do{
                 let data = try Data(contentsOf: fileLocation)

@@ -11,6 +11,7 @@ class DataTableViewCell: UITableViewCell {
 
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var imageViewBooks: UIImageView!
     @IBOutlet weak var yearLabel: UILabel!
     
     override func awakeFromNib() {
