@@ -42,12 +42,17 @@ class DataTableViewController: UITableViewController {
         cell?.titleLabel.text = "by \(data[indexPath.row].authors[0]) "
         cell?.yearLabel.text = "1920"
         //cell?.imageViewBooks.image = data[indexPath.row].thumbnailUrl
-        if let myVar = data[indexPath.row].thumbnailUrl {
+        if let myVar = data[indexPath.row].thumbnailUrl as? String{
             AF.request(myVar).response { (response) in
-                cell?.imageViewBooks.image = UIImage(data: response.data!)
+                
+                if let image = response.data {
+                    DispatchQueue.main.async {
+                        cell?.imageViewBooks.image = UIImage(data: image)
                     }
-        }else {
-            cell?.imageViewBooks.image = UIImage(named: "nofile")
+                }else {
+                    cell?.imageViewBooks.image = UIImage(named: "asset/nofile")
+                }
+            }
         }
         
         // Configure the cell...
